@@ -31,7 +31,7 @@ contract Requests {
     event MakeRequestEvent(address indexed from, address indexed to, uint256 amount);
     event CompleteRequestEvent(uint256 requestId);
 
-    // Make new request
+    // Make a new request
     function makeRequest(address _to, uint256 _amount) public {
         Request storage request = requests[requestsTracker];
         request.requestId = requestsTracker;
@@ -60,7 +60,7 @@ contract Requests {
         emit CompleteRequestEvent(_requestId);
     }
 
-    // Load incoming requests from smart contract
+    // Load incoming requests from the smart contract
     function loadIncomingRequests() public view returns (Request[] memory) {
         uint256 requestsCount = 0;
         for (uint256 i = 0; i < requestsTracker; i++) {
@@ -81,7 +81,7 @@ contract Requests {
         return _requests;
     }
 
-    // Load outgoing requests from smart contract
+    // Load outgoing requests from the smart contract
     function loadOutgoingRequests() public view returns (Request[] memory) {
         uint256 requestsCount = 0;
         for (uint256 i = 0; i < requestsTracker; i++) {
