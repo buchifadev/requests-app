@@ -2,6 +2,8 @@
 
 pragma solidity 0.8.7;
 
+/// @title IERC20Token Interface
+/// @dev Interface for ERC20 token contract
 interface IERC20Token {
     function transfer(address, uint256) external returns (bool);
     function approve(address, uint256) external returns (bool);
@@ -14,6 +16,8 @@ interface IERC20Token {
     event Approval(address indexed owner, address indexed spender, uint256 value);
 }
 
+/// @title Requests Contract
+/// @dev Contract to handle payment requests and transfers
 contract Requests {
     
     struct Request {
@@ -31,7 +35,9 @@ contract Requests {
     event MakeRequestEvent(address indexed from, address indexed to, uint256 amount);
     event CompleteRequestEvent(uint256 requestId);
 
-    // Make a new request
+    /// @notice Make a new payment request
+    /// @param _to The recipient's address
+    /// @param _amount The amount to be transferred
     function makeRequest(address _to, uint256 _amount) public {
         Request storage request = requests[requestsTracker];
         request.requestId = requestsTracker;
@@ -44,7 +50,8 @@ contract Requests {
         emit MakeRequestEvent(msg.sender, _to, _amount);
     }
 
-    // Complete an existing request
+    /// @notice Complete an existing payment request
+    /// @param _requestId The ID of the request to be completed
     function completeRequest(uint256 _requestId) public {
         Request storage request = requests[_requestId];
         require(_requestId >= 0, "Invalid request ID");
@@ -60,7 +67,8 @@ contract Requests {
         emit CompleteRequestEvent(_requestId);
     }
 
-    // Load incoming requests from the smart contract
+    /// @notice Load incoming payment requests from the smart contract
+    /// @return _requests An array of incoming payment requests
     function loadIncomingRequests() public view returns (Request[] memory) {
         uint256 requestsCount = 0;
         for (uint256 i = 0; i < requestsTracker; i++) {
@@ -81,24 +89,8 @@ contract Requests {
         return _requests;
     }
 
-    // Load outgoing requests from the smart contract
+    /// @notice Load outgoing payment requests from the smart contract
+    /// @return _requests An array of outgoing payment requests
     function loadOutgoingRequests() public view returns (Request[] memory) {
         uint256 requestsCount = 0;
-        for (uint256 i = 0; i < requestsTracker; i++) {
-            if (requests[i].from == msg.sender) {
-                requestsCount++;
-            }
-        }
-
-        Request[] memory _requests = new Request[](requestsCount);
-        uint256 index = 0;
-        for (uint256 i = 0; i < requestsTracker; i++) {
-            if (requests[i].from == msg.sender) {
-                _requests[index] = requests[i];
-                index++;
-            }
-        }
-
-        return _requests;
-    }
-}
+        for (uint256 i = 0; i < requestsTracker; i++)
