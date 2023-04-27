@@ -112,22 +112,22 @@ const App = () => {
     }
   }
 
-  useEffect(() => {
-    connectWallet()
-  }, [])
+    useEffect(() => {
+      connectWallet()
+    }, [])
 
-  useEffect(() => {
-    if (kit && address) {
-      connectContract()
-    }
-  }, [kit, address])
+    useEffect(() => {
+      if (kit && address) {
+        connectContract()
+      }
+    }, [kit, address])
 
-  useEffect(() => {
-    if (requestsContract) {
-      getOutgoingRequests();
-      getIncomingRequest();
-    }
-  }, [requestsContract])
+    useEffect(() => {
+      if (requestsContract) {
+        getOutgoingRequests();
+        getIncomingRequest();
+      }
+    }, [requestsContract])
 
   return (
     <div className='w-5/6 bg-red-100 m-auto min-h-screen'>
