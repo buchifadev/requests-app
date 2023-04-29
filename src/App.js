@@ -92,6 +92,16 @@ const App = () => {
     }
   }
 
+
+  async function grantRequest(requestId, requestAmount) {
+    try {
+      await approveRequestAmount(requestAmount);
+      await requestsContract.methods.completeRequest(requestId).send({ from: kit.defaultAccount })
+    } catch (e) {
+      console.log(e)
+    }
+  }
+
   async function approveRequestAmount(amount) {    
     const requestAmount = new BigNumber(amount).shiftedBy(18)
     const cusdContract = new kit.web3.eth.Contract(
@@ -101,15 +111,6 @@ const App = () => {
     await cusdContract.methods
       .approve(requestsContractAddress, requestAmount)
       .send({ from: kit.defaultAccount });
-  }
-
-  async function grantRequest(requestId, requestAmount) {
-    try {
-      await approveRequestAmount(requestAmount);
-      await requestsContract.methods.completeRequest(requestId).send({ from: kit.defaultAccount })
-    } catch (e) {
-      console.log(e)
-    }
   }
 
     useEffect(() => {
