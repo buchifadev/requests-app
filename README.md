@@ -30,5 +30,24 @@ To run the Requests App locally for development purposes, follow the steps below
 3. Start the development server using `npm start` or `yarn start`.
 4. Access the application in your web browser at `http://localhost:3000`.
 
+## Contributing
+
+Contributions to the Requests App are highly appreciated. If you want to contribute, please follow these guidelines:
+
+1. Fork the repository on GitHub.
+2. Create a new branch for your changes.
+3. Make your modifications and commit them with descriptive messages.
+4. Push your changes to your fork.
+5. Submit a pull request, providing a detailed description of your changes.
+
+Please adhere to the established coding conventions and include any necessary tests for your new features or modifications.
+
+## License
+
+The Requests App is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
+
+## Contact
+
+If you have any questions, suggestions, or feedback, feel free to reach out to us at [email@example.com](mailto:email@example.com). We appreciate your support and engagement!
 
 ---
