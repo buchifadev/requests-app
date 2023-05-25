@@ -21,8 +21,14 @@ To use the Requests App, follow these steps:
 3. Submit the request and await confirmation.
 4. Once the request is fulfilled, the tokens will be sent to your address.
 
+## Development
+
+To run the Requests App locally for development purposes, follow the steps below:
+
+1. Clone the repository to your local machine.
+2. Install the necessary dependencies using `npm install` or `yarn install`.
+3. Start the development server using `npm start` or `yarn start`.
+4. Access the application in your web browser at `http://localhost:3000`.
 
 
 ---
-
-Feel free to customize the structure or content as needed.
